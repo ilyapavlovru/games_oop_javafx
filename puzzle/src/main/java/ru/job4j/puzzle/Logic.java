@@ -69,12 +69,12 @@ public class Logic {
     }
 
 
-    public boolean monoHorizontal(int[][] board, int i) {
+    public boolean monoHorizontal(int[][] board, int row) {
 
         boolean result = true;
 
-        for (int j = 0; j < board.length; j++) {
-            if (board[i][j] != 1) {
+        for (int col = 0; col < board.length; col++) {
+            if (board[row][col] != 1) {
                 result = false;
                 break;
             }
@@ -85,12 +85,12 @@ public class Logic {
 
 
 
-    public boolean monoVertical(int[][] board, int j) {
+    public boolean monoVertical(int[][] board, int col) {
 
         boolean result = true;
 
-        for (int i = 0; i < board.length; i++) {
-            if (board[i][j] != 1) {
+        for (int row = 0; row < board.length; row++) {
+            if (board[row][col] != 1) {
                 result = false;
                 break;
             }
