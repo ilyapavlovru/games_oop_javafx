@@ -35,4 +35,25 @@ public class ChessTest {
         Cell[] expected = {Cell.D2, Cell.E3, Cell.F4, Cell.G5};
         assertThat(result, is(expected));
     }
+
+    @Test(expected = IllegalStateException.class)
+    public void whenBishopGoNoDiagonal() {
+        BishopBlack bishopBlack = new BishopBlack(Cell.D2);
+        Cell[] result = bishopBlack.way(bishopBlack.position(), Cell.F2);
+    }
+
+    @Test
+    public void whenBishopCannotGoToAnotherBishop() {
+        BishopBlack bishopBlack1 = new BishopBlack(Cell.D2);
+        BishopBlack bishopBlack2 = new BishopBlack(Cell.F4);
+//        Cell[] result = bishopBlack1.way(bishopBlack1.position(), bishopBlack2.position());
+//        Cell[] expected = {bishopBlack1.position()};
+//        assertThat(result, is(expected));
+
+        Logic logic = new Logic();
+        logic.add(bishopBlack1);
+        logic.add(bishopBlack2);
+        boolean result = logic.move(bishopBlack1.position(), bishopBlack2.position());
+        assertThat(result, is(false));
+    }
 }

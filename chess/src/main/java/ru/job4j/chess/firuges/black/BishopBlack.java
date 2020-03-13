@@ -25,12 +25,11 @@ public class BishopBlack implements Figure {
     @Override
     public Cell[] way(Cell source, Cell dest) {
 
-//        if (!isDiagonal(source, dest)) {
-//            throw new IllegalStateException(
-//                    String.format("Could not way by diagonal from %s to %s", source, dest)
-//            );
-//        }
-
+        if (!isDiagonal(source, dest)) {
+            throw new IllegalStateException(
+                    String.format("Could not way by diagonal from %s to %s", source, dest)
+            );
+        }
 
         int size = abs(dest.x - source.x) + 1;  // количество шагов-клеток для перемещения фигуры
         Cell[] steps = new Cell[size];
@@ -46,8 +45,9 @@ public class BishopBlack implements Figure {
     }
 
     public boolean isDiagonal(Cell source, Cell dest) {
-        //TODO check diagonal
-        return false;
+        int absDeltaX = abs(dest.x - source.x);
+        int absDeltaY = abs(dest.y - source.y);
+        return absDeltaX == absDeltaY;
     }
 
     @Override
