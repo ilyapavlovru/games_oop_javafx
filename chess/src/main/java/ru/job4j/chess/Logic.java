@@ -27,23 +27,21 @@ public class Logic {
         if (index != -1) {
             Cell[] steps = this.figures[index].way(source, dest);
 
+            boolean barrier = false;
+            // берем очередной шаг в движении фигуры и проверяем: нет ли на этом поле другой фигуры
             for (int i = 1; i < steps.length; i++) {
-                // берем очередной шаг в движении фигуры и проверяем: нет ли на этом поле другой фигуры
                 for (int k = 0; k != this.figures.length; k++) {
-                    Cell cell = this.figures[k].position();
-                    Cell stepi = steps[i];
                     if (this.figures[k] != null && this.figures[k].position().equals(steps[i])) {
-                        rst = false;
+                        barrier = true;
+                        break;
                     }
                 }
             }
 
-            if (steps.length > 0 && steps[steps.length - 1].equals(dest)) {
+            if (steps.length > 0 && steps[steps.length - 1].equals(dest) && !barrier) {
                 rst = true;
                 this.figures[index] = this.figures[index].copy(dest);
             }
-
-
         }
         return rst;
     }
