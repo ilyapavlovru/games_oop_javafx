@@ -30,11 +30,9 @@ public class Logic {
             boolean barrier = false;
             // берем очередной шаг в движении фигуры и проверяем: нет ли на этом поле другой фигуры
             for (int i = 1; i < steps.length; i++) {
-                for (int k = 0; k != this.figures.length; k++) {
-                    if (this.figures[k] != null && this.figures[k].position().equals(steps[i])) {
-                        barrier = true;
-                        break;
-                    }
+                if (this.findBy(steps[i]) >= 0) {
+                    barrier = true;
+                    break;
                 }
             }
 
